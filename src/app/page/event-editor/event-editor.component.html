@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <form #eventForm="ngForm" (ngSubmit)="onUpdate(eventForm)">
+      <div class="form-group">
+        <label for="">Name</label>
+        <input name="name" [(ngModel)]="event.name" type="text"
+          class="form-control" pattern=".{8,25}" required>
+        <div [hidden]="eventForm.controls.name?.valid" class="error-message">
+          The name must be minimum 8, maximum 25 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Date</label>
+        <input name="date" [(ngModel)]="event.date" type="text" required 
+        pattern="^([1-9]|0[1-9]|1[0-2])\/([0-9]|[1-2][0-9]|3[0-1])\/\d{4}"
+          class="form-control">
+        <div [hidden]="eventForm.controls.date?.valid" class="error-message">
+          The date must be in English format.
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="">Time</label>
+        <input name="time" [(ngModel)]="event.time" type="text" class="form-control" required
+        pattern="^([0-9]|1[0-2])(am|pm)">
+        <div [hidden]="eventForm.controls.time?.valid" class="error-message">
+          The time must be in English format.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Country</label>
+        <input name="country" [(ngModel)]="event.location.country" type="text" class="form-control" required
+        pattern="[A-Z ]{5,25}">
+        <div [hidden]="eventForm.controls.country?.valid" class="error-message">
+          The Country name must be capital and min 5, max 25 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">City</label>
+        <input name="city" [(ngModel)]="event.location.city" type="text" class="form-control" required
+        pattern="[A-Z][a-zA-Z- ]{4,24}">
+       <div [hidden]="eventForm.controls.city?.valid" class="error-message">
+          The City name must start with a capital letter and min 5, max 25 characters.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="">Address</label>
+        <input name="address" [(ngModel)]="event.location.address" type="text" class="form-control" required>
+        <div [hidden]="eventForm.controls.address?.valid" class="error-message">
+          The address must be minimum 10, maximum 50 characters.
+          </div>
+      </div>
+
+      <button [disabled]="eventForm.invalid" type="submit" class="btn btn-primary btn-block btn-lg">
+        <i class="fa fa-save"></i>
+      </button>
+    </form>
+    
+  </div>
+</div>
